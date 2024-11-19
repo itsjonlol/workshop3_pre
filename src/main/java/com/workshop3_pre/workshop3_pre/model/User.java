@@ -1,7 +1,9 @@
 package com.workshop3_pre.workshop3_pre.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.Email;
@@ -15,11 +17,11 @@ import jakarta.validation.constraints.Size;
 // @AllArgsConstructor
 // @NoArgsConstructor
 // @Builder
+@RedisHash("User")
+public class User implements Serializable {
 
-public class User {
 
-
-    
+   
     private String id;
 
     @NotNull(message = "Name cannot be null")
