@@ -16,16 +16,24 @@
     <div class = "container"></div>
         <div class = "row">
             <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                <h1 class = "text-center"> Create New Student</h1>
+                <h1 class = "text-center"> Update User</h1>
                 <div class = "card-body">
-                    <form th:action = "@{/contact}" th:object = "${user}" method = "POST">
 
-                        <div th:if="${#fields.hasErrors('global')}" class="alert alert-danger" role="alert">
-                            <ul>
-                                <li th:each="err : ${#fields.errors('global')}">
-                                    <span th:text="${err}"></span>
-                                </li>
-                            </ul>
+                    
+
+
+                    <form th:action = "@{/update}" th:object = "${user}" method = "POST">
+
+
+                        <div class = "form-group">
+                            <label> ID</label>
+                            <input
+                            type = "text"
+                            name = "id"
+                            th:field = "*{id}" 
+                            class = "form-control"
+                            readonly
+                            />
                         </div>
 
 

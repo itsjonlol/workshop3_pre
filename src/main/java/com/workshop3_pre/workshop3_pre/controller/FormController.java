@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,14 +38,29 @@ public class FormController {
     @PostMapping("/contact")
     public String contactPage(@Valid @ModelAttribute("user") User user,BindingResult result,Model model,
     RedirectAttributes redirectAttributes,HttpServletResponse response) {
+
+        if (contactService.checkIfNameExists(user.getName())) {
+            FieldError err = new FieldError("user", "name", "Name already exists");
+            result.addError(err);
+            // return "index";
+        }
+        if (contactService.checkIfEmailExists(user.getEmail())) {
+            ObjectError err = new ObjectError("globalError","Email already exists");
+            result.addError(err);
+        }
+        if (result.hasErrors()) {
+            return "index";
+        }
+        
+
         if (result.hasErrors()) {
             return "index";
         }
         model.addAttribute("user",user);
+        //user.setId("hello!");
         
         contactService.saveUser(user);
-       
-
+    
 
         redirectAttributes.addFlashAttribute("message","User created successfully!");
         
@@ -77,6 +94,43 @@ public class FormController {
     }
     //to add delete
 
+    @GetMapping("/delete/{userid}")
+    public String deleteUser(@PathVariable("userid") String id) {
+        
+        contactService.deleteUser(id);
+        return "redirect:/contacts";
+
+    }
+    
+    @GetMapping("/update/{userid}")
+    public String showUpdatePage(@PathVariable("userid") String id,Model model) {
+        User userToUpdate = contactService.getUserById(id);
+        model.addAttribute("user",userToUpdate);
+        return "updateuser_page";
+    }
+
+    @GetMapping("/updatesuccess")
+    public String showUpdateSuccessPage() {
+        return "updatesuccess_page";
+    }
+
+    
+    @PostMapping("/update")
+    public String updateUser(@Valid @ModelAttribute("user") User user,BindingResult result,Model model,
+    RedirectAttributes redirectAttributes,HttpServletResponse response) {
+        if (result.hasErrors()) {
+            return "updateuser_page";
+        }
+        model.addAttribute("user",user);
+        //user.setId("hello!");
+        
+        contactService.saveUser(user);
+    
+
+        redirectAttributes.addFlashAttribute("message","User has been updated successfully!");
+        
+        return "redirect:/updatesuccess";
+    }
      
     
 }
