@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.workshop3_pre.util.Util;
 import com.workshop3_pre.workshop3_pre.model.User;
+import com.workshop3_pre.workshop3_pre.util.Util;
 
 @Repository
 public class ContactRepo {

@@ -35,8 +35,7 @@ public class User {
     @Email(message = "Please provide a valid email address")
     private String email;
 
-    @Pattern(regexp = "^[0-9]*$",message = "Please enter a valid number")
-    @Size(min=7,message = "Phone number must be more than 7 digits")
+    @Pattern(regexp = "(8|9)[0-9]{7}",message = "Please enter a valid number")
     private String phoneNumber;
 
     @Past(message = "Past dates only")

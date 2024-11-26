@@ -9,7 +9,9 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.workshop3_pre.util.Util;
+import com.workshop3_pre.workshop3_pre.util.Util;
+
+import jakarta.annotation.PostConstruct;
 
 // @Configuration
 // public class RedisConfig {
@@ -110,6 +112,14 @@ public class RedisConfig {
     @Value("${spring.data.redis.password}")
     private String redisPassword;
 
+    @PostConstruct
+public void logRedisConfig() {
+    System.out.println("Redis Config:");
+    System.out.println("Host: " + redisHost);
+    System.out.println("Port: " + redisPort);
+    System.out.println("Password: " + (redisPassword != null ? "******" : "null"));
+    System.out.println("Username: " + redisUsername);
+}
 
     // slide 18
 

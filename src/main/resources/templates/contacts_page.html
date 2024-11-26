@@ -9,15 +9,32 @@
     crossorigin="anonymous">
 </head>
 <body>
-    <h1> Contacts page</h1>
-    <div th:each="user : ${userList}">
-        <a th:href="@{/contact/{id} (id = ${user.id})}">
-            <strong th:text="${user.name}"></strong>
 
+    <div class = "container">
+        <div class = "row">
+            <h1> Contacts</h1>
+        </div>
+
+        <div class="row">
+
+            <a th:href="@{/}" class = "btn btn-primary">Create new contact</a>
             
-        </a>
+        </div>
+        
     </div>
-    <br/>
-    <a th:href="@{/}" class ="btn btn-primary">Create new contact</a>
+    <br>
+    <div class = "container">
+        <div class = "row">
+            <div th:if="${userList.size() == 0 }">
+                <p colspan="9" class = "text-center">No record found</p>
+            </div>
+            <div th:each="user : ${userList}">
+                <a th:href="@{/contact/{id} (id = ${user.id})}">
+                    <strong th:text="${user.name}"></strong>
+                </a>
+                
+            </div>
+        </div>
+    </div>
 </body>
 </html>
