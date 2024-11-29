@@ -74,7 +74,7 @@ public class FormController {
     @GetMapping("/contact/{id}")
     public String individualContactPage(@PathVariable String id,Model model){
 
-        if (contactService.checkUserExist(id)==false) {
+        if (contactService.checkIfUserExists(id)==false) {
             return "404_page";
         }
         User user = contactService.getUserById(id);

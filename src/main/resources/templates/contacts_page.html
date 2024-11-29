@@ -28,13 +28,14 @@
             <div th:if="${userList.size() == 0 }">
                 <p colspan="9" class = "text-center">No record found</p>
             </div>
-            <div th:each="user : ${userList}">
+        </div>
+        <ol >
+            <li th:each="user : ${userList}">
                 <a th:href="@{/contact/{id} (id = ${user.id})}">
                     <strong th:text="${user.name}"></strong>
                 </a>
-                
-            </div>
-        </div>
+            </li>
+        </ol>
     </div>
 </body>
 </html>
