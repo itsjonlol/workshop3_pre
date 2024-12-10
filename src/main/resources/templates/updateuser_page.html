@@ -24,67 +24,35 @@
 
                     <form th:action = "@{/update}" th:object = "${user}" method = "POST">
 
-
                         <div class = "form-group">
                             <label> ID</label>
-                            <input
-                            type = "text"
-                            name = "id"
-                            th:field = "*{id}" 
-                            class = "form-control"
-                            readonly
-                            />
+                            <input type = "text" name = "id" th:field = "*{id}"  class = "form-control" readonly />
                         </div>
 
 
                         <div class = "form-group">
                             <label> Please enter User Name</label>
                             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
-                            <input
-                            type = "text"
-                            name = "name"
-                            th:field = "*{name}" 
-                            class = "form-control"
-                            placeholder = "Enter Name"
-                            />
+                            <input type = "text" name = "name" th:field = "*{name}" class = "form-control" placeholder = "Enter Name"/>
                         </div>
 
                         <div class = "form-group">
                             <label> Please enter Email</label>
                             <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
-                            <input
-                            type = "text"
-                            name = "email"
-                            th:field = "*{email}" 
-                            class = "form-control"
-                            placeholder = "Enter Email"
-                            />
+                            <input type = "text" name = "email" th:field = "*{email}" class = "form-control" placeholder = "Enter Email"/>
                         </div>
 
                         <div class = "form-group">
                             <label> Please enter Phone Number</label>
                             <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
-                            <input
-                            type = "text"
-                            name = "phoneNumber"
-                            th:field = "*{phoneNumber}" 
-                            class = "form-control"
-                            placeholder = "Enter phone number"
-                            />
-
+                            <input type = "text" name = "phoneNumber" th:field = "*{phoneNumber}"  class = "form-control" placeholder = "Enter phone number" />
                         </div>
                         
 
                         <div class = "form-group">
                             <label> Please enter date of birth</label>
                             <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="text-danger"></div>
-                            <input
-                            type = "date"
-                            name = "dateOfBirth"
-                            th:field = "*{dateOfBirth}" 
-                            class = "form-control"
-                            placeholder = "Enter date of birth"
-                            />
+                            <input type = "date" name = "dateOfBirth" th:field = "*{dateOfBirth}"  class = "form-control" placeholder = "Enter date of birth" />
                         </div>
                         
                         <div class = "box-footer">
